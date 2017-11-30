@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Threading;
@@ -40,12 +41,16 @@ namespace ArkSpawnTool
             Console.WriteLine("summon x y - will summon dino y of level x. Omitting x will default to 150");
             Console.WriteLine("summon and tame x y - will summon dino y of level x. Omitting x will default to 150");
 
-            enableCommands();
-
             staThreadDispatcher = this.Dispatcher;
 
             listeningThread = new Thread(listen);
             listeningThread.Start();
+        }
+
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+            enableCommands();
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
@@ -78,7 +83,7 @@ namespace ArkSpawnTool
 
         void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            Console.WriteLine("Heard: " + e.Result.Text + " [ " + e.Result.Confidence + "]");
+            Console.WriteLine("Heard: " + e.Result.Text + " [" + e.Result.Confidence + "]");
             if (e.Result.Confidence > 0.84 && "ARK: Survival Evolved".Equals(Utils.GetActiveWindowTitle()))
             {
                 SpeechCommand command = (SpeechCommand)e.Result.Grammar;
@@ -99,15 +104,11 @@ namespace ArkSpawnTool
             engine.UnloadAllGrammars();
             engine.LoadGrammar(SummonDinoCommand.Instance);
             engine.LoadGrammar(SummonAndTameCommand.Instance);
-
-            /*
             engine.LoadGrammar(SpawnArtifacts.Instance);
             engine.LoadGrammar(SpawnItemCommand.Instance);            
-            
             engine.LoadGrammar(MiscCommands.Instance);
             engine.LoadGrammar(TeleportCommand.Instance);
             engine.LoadGrammar(RepeatCommand.Instance);
-            */
             enabled = true;
         }
 
@@ -135,6 +136,14 @@ namespace ArkSpawnTool
 
                 System.Windows.Clipboard.SetText(oldText);
             }));
+        }
+
+        public static void sendMultipleCommands(List<String> commands)
+        {
+            foreach(String command in commands)
+            {
+                sendCommand(command);
+            }
         }
 
         void hook_KeyPressed(object sender, KeyPressedEventArgs e)

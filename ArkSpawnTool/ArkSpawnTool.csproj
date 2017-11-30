@@ -27,7 +27,7 @@
     <InstallUrl>https://raw.githubusercontent.com/drenith/ArkSpawnTool/master/ArkSpawnTool/publish/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -91,7 +91,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MiscCommand.cs" />
+    <Compile Include="RepeatCommand.cs" />
+    <Compile Include="SpawnArtifacts.cs" />
+    <Compile Include="SpawnItemCommand.cs" />
     <Compile Include="SummonAndTame.cs" />
+    <Compile Include="TeleportCommand.cs" />
     <Compile Include="TextBoxWriter.cs" />
     <Compile Include="GrammarUtils.cs" />
     <Compile Include="SpeechCommand.cs" />
@@ -131,6 +136,15 @@
     </EmbeddedResource>
     <None Include="ArkSpawnTool_TemporaryKey.pfx" />
     <Content Include="config\DinoData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\ItemData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\MiscCommands.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\TeleportData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
