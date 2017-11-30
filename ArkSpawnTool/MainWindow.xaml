@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArkSpawnTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="ArkSpawnTool" Height="350" Width="525">
+        <TextBox
+            x:Name="console"
+            IsReadOnly="True"
+            Background="Black"
+            Foreground="Gray"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto"/>
 </Window>
