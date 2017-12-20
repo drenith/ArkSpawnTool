@@ -1,0 +1,20 @@
+﻿{
+   "Destroy Wild Dinos":"DestroyWildDinos",
+   "Set Day":"settimeofday 7:00",
+   "Set Night":"settimeofday 23:00",
+   "Force Tame":"forcetame",
+   "Do Tame":"dotame",
+   "Fly":"fly",
+   "Walk":"walk",
+   "Give All Structure":"GiveAllStructure",
+   "Give Engrams":"GiveEngrams",
+   "Give To Me":"GiveToMe",
+   "Infinite Stats":"InfiniteStats",
+   "God":"God",
+   "Toggle Infinite Ammo":"ToggleInfiniteAmmo",
+   "Show My Admin Manager":"ShowMyAdminManager",
+   "Max Level":"AddExperience 999999999 0 1",
+   "Enable Cheats" : "enablecheats UyVxypPVo5BvoGlM",
+   "Ghost" : "ghost",
+   "Kill" : "kill"
+}

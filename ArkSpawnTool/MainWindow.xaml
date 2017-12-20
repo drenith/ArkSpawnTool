@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:ArkSpawnTool"
         mc:Ignorable="d"
         Title="ArkSpawnTool" Height="350" Width="525">
-        <TextBox
-            x:Name="console"
-            IsReadOnly="True"
-            Background="Black"
-            Foreground="Gray"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Auto"/>
+    <TextBox
+        x:Name="console"
+        IsReadOnly="True"
+        Background="Black"
+        Foreground="Gray"
+        HorizontalScrollBarVisibility="Auto"
+        VerticalScrollBarVisibility="Auto"/>
 </Window>

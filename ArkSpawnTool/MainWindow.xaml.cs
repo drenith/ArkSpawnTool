@@ -123,7 +123,6 @@ namespace ArkSpawnTool
         {
             staThreadDispatcher.Invoke(new Action(() =>
             {
-
                 String oldText = System.Windows.Clipboard.GetText();
 
                 System.Windows.Clipboard.SetText(command);
