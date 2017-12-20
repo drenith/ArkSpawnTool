@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Threading;
@@ -40,6 +41,7 @@ namespace ArkSpawnTool
             Console.WriteLine("spawn x y - will spawn x of y item. Omitting x will default to 1");
             Console.WriteLine("summon x y - will summon dino y of level x. Omitting x will default to 150");
             Console.WriteLine("summon and tame x y - will summon dino y of level x. Omitting x will default to 150");
+            Console.WriteLine("Recognition Confidence Threshold: " + Properties.Settings.Default.Confidence);
 
             staThreadDispatcher = this.Dispatcher;
 
@@ -84,7 +86,7 @@ namespace ArkSpawnTool
         void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             Console.WriteLine("Heard: " + e.Result.Text + " [" + e.Result.Confidence + "]");
-            if (e.Result.Confidence > 0.84 && "ARK: Survival Evolved".Equals(Utils.GetActiveWindowTitle()))
+            if (e.Result.Confidence > Properties.Settings.Default.Confidence && "ARK: Survival Evolved".Equals(Utils.GetActiveWindowTitle()))
             {
                 SpeechCommand command = (SpeechCommand)e.Result.Grammar;
                 try
@@ -155,6 +157,80 @@ namespace ArkSpawnTool
             {
                 enableCommands();
             }
+        }
+
+        private void updateConfidence(object sender, RoutedEventArgs e)
+        {
+            String response = "" + Properties.Settings.Default.Confidence;
+            showInputBox("Update Confidence", "New Threshold:", ref response, s =>
+            {
+                try
+                {
+                    double c = Double.Parse(s);
+                    if (c < 0 || 100 < c)
+                    {
+                        return false;
+                    }
+                    Properties.Settings.Default.Confidence = c;
+                    Properties.Settings.Default.Save();
+                    return true;
+                } catch (Exception ex)
+                {
+                    return false;
+                }
+            });
+        }
+
+        private DialogResult showInputBox(String title, String prompt, ref String value, Func<String, Boolean> accept)
+        {
+            Form form = new Form();
+            Label label = new Label();
+            TextBox textBox = new TextBox();
+            Button buttonOk = new Button();
+            Button buttonCancel = new Button();
+
+            form.Text = title;
+            label.Text = prompt;
+            textBox.Text = value;
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+
+            label.SetBounds(9, 20, 372, 13);
+            textBox.SetBounds(12, 36, 372, 20);
+            buttonOk.SetBounds(228, 72, 75, 23);
+            buttonCancel.SetBounds(309, 72, 75, 23);
+
+            label.AutoSize = true;
+            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            buttonOk.Click += new EventHandler((s, e) => {
+                if (!accept.Invoke(textBox.Text))
+                {
+                    label.ForeColor = System.Drawing.Color.Red;
+                    buttonOk.DialogResult = System.Windows.Forms.DialogResult.None;
+                } else
+                {
+                    buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            });
+
+            form.ClientSize = new System.Drawing.Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.ClientSize = new System.Drawing.Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+
+            DialogResult dialogResult = form.ShowDialog();
+            value = textBox.Text;
+            return dialogResult;
         }
     }
 }

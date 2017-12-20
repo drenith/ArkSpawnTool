@@ -6,11 +6,18 @@
         xmlns:local="clr-namespace:ArkSpawnTool"
         mc:Ignorable="d"
         Title="ArkSpawnTool" Height="350" Width="525">
-    <TextBox
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Config">
+                <MenuItem Header="_Confidence" Click="updateConfidence" />
+            </MenuItem>
+        </Menu>
+        <TextBox
         x:Name="console"
         IsReadOnly="True"
         Background="Black"
         Foreground="Gray"
         HorizontalScrollBarVisibility="Auto"
         VerticalScrollBarVisibility="Auto"/>
+    </DockPanel>
 </Window>
