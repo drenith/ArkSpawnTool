@@ -86,7 +86,7 @@ namespace ArkSpawnTool
         void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             Console.WriteLine("Heard: " + e.Result.Text + " [" + e.Result.Confidence + "]");
-            if (e.Result.Confidence > Properties.Settings.Default.Confidence && "ARK: Survival Evolved".Equals(Utils.GetActiveWindowTitle()))
+            if (e.Result.Confidence > (Properties.Settings.Default.Confidence / 100) && "ARK: Survival Evolved".Equals(Utils.GetActiveWindowTitle()))
             {
                 SpeechCommand command = (SpeechCommand)e.Result.Grammar;
                 try
