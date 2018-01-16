@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ArkSpawnTool.exe" size="38912">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ArkSpawnTool.exe" size="41984">
       <assemblyIdentity name="ArkSpawnTool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>q1G7PJb5iOIYtKBmAJtfOS2TOyS39Na2I4x9JcK1ceg=</dsig:DigestValue>
+        <dsig:DigestValue>YR9R66tQt27noE3QV2Lsq1+sTDFk+KgN9LzDwm+TcPA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

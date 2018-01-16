@@ -111,6 +111,7 @@ namespace ArkSpawnTool
             engine.LoadGrammar(MiscCommands.Instance);
             engine.LoadGrammar(TeleportCommand.Instance);
             engine.LoadGrammar(RepeatCommand.Instance);
+            engine.LoadGrammar(PrepareRockwell.Instance);
             enabled = true;
         }
 

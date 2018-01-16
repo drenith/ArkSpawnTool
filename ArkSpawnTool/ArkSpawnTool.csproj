@@ -94,6 +94,7 @@
     </ApplicationDefinition>
     <Compile Include="MiscCommand.cs" />
     <Compile Include="RepeatCommand.cs" />
+    <Compile Include="PrepareRockwell.cs" />
     <Compile Include="SpawnArtifacts.cs" />
     <Compile Include="SpawnItemCommand.cs" />
     <Compile Include="SummonAndTame.cs" />
